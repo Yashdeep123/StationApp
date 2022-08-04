@@ -59,7 +59,7 @@ struct NearestTabView: View
      
         return viewModel.Itemobjects.filter(
             { Items in
-                ExactFiltered(Items: Items) || NearestItems(Items: Items)
+                ExactFiltered(Items: Items) && NearestItems(Items: Items)
             })
         
     }
@@ -73,7 +73,7 @@ struct NearestTabView: View
     
     func NearestItems(Items: Items) -> Bool
     {
-        if (personvm.UserData?.station_code ?? 0) > Items.destination_station_code || (personvm.UserData?.station_code ?? 0) < Items.origin_station_code
+        if (personvm.UserData?.station_code ?? 0) > Items.destination_station_code && (personvm.UserData?.station_code ?? 0) < Items.origin_station_code
         {
             return false
         }
